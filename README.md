@@ -15,7 +15,7 @@ var csv_converter = require('node-csv-converter'),
   
 user.collections.find(function(err,document){
     //document is array
-    var converter = new csv_converter();
+    var converter = csv_converter();
     converter.setField(['Name','Sex','Places','Country','Phone']);
     converter.cws('./user.csv'); //create write stream
     converter.export(document); //run

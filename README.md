@@ -17,8 +17,7 @@ user.collections.find(function(err,document){
     //document is array
     var converter = csv_converter();
     converter.setField(['Name','Sex','Places','Country','Phone']);
-    converter.cws('./user.csv'); //create write stream
-    converter.export(document); //run
+    converter.export(document,'./user.csv'); //create write stream
 });
 
 //about document:

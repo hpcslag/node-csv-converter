@@ -9,12 +9,13 @@ npm install node-csv-converter
 ###Usage
 
 ```javascript
-var converter = require('node-csv-converter'),
+var csv_converter = require('node-csv-converter'),
     mongojs = require('mongojs'),
     user = mongojs('User',['collections']);
   
 user.collections.find(function(err,document){
     //document is array
+    var converter = new csv_converter();
     converter.setField(['Name','Sex','Places','Country','Phone']);
     converter.cws(document,'./user.csv'); //create write stream
 });

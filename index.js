@@ -1,0 +1,50 @@
+var fs = require('fs'),
+	path = require('path');
+
+function setField(arr){
+	var field = arr;
+	return arr;
+}
+
+function output(field,data_obj,path){
+	var csv_f = fs.createWriteStream(path),
+	str = '';
+	for(var i = 0;i<field.length;i++){
+		if(i==field.length-1){
+			str += (field[i] + '\n');
+		}else{
+			str += (field[i] + ',');
+		}
+	}
+
+	for(var i=0;i<data_obj.length;i++){
+		//run all data
+		for(var j=0;j<field.length;j++){
+			//run field item
+			for(var k=0;k<Object.keys(data_obj[i]).length;k++){
+				//put right data in field
+				var data = Object.keys(data_obj[i]);
+				if(data[k] == field[j]){
+					str += data_obj[i][data[k]];
+					break;
+				}
+			}
+			if(j == field.length-1){
+				break;
+			}else{
+				str += ',';
+			}
+		}
+		str += '\n';
+	}
+	csv_f.write(str);
+	csv_f.close();
+}
+
+module.exports = function(){
+	var array = [];
+	return {
+		setField: function(arr){ array = setField(arr);},
+		output : function(document,path){ output(array,document,path); }
+	}
+}

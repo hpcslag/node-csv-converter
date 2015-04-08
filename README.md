@@ -43,4 +43,5 @@ user.collections.find(function(err,document){
 
 ###API
 `setField([fieldArray])`
+
 `output([objectDataArray],outputPath)`

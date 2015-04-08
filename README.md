@@ -40,3 +40,7 @@ user.collections.find(function(err,document){
 ```
 
 ###Like I said, it is so easy to use
+
+###API
+`setField([fieldArray])`
+`output([objectDataArray],outputPath)`

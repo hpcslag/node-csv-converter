@@ -9,6 +9,7 @@ function setField(arr){
 function output(field,data_obj,path){
 	var csv_f = fs.createWriteStream(path,{flags: 'w', encoding: 'utf-8',mode: 0666}),
 	str = '';
+	str += "\ufeff"; //BOM
 	for(var i = 0;i<field.length;i++){
 		if(i==field.length-1){
 			str += (field[i] + '\n');

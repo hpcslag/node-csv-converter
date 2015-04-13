@@ -7,7 +7,7 @@ function setField(arr){
 }
 
 function output(field,data_obj,path){
-	var csv_f = fs.createWriteStream(path),
+	var csv_f = fs.createWriteStream(path,{flags: 'w', encoding: 'utf-8',mode: 0666}),
 	str = '';
 	for(var i = 0;i<field.length;i++){
 		if(i==field.length-1){
@@ -25,7 +25,7 @@ function output(field,data_obj,path){
 				//put right data in field
 				var data = Object.keys(data_obj[i]);
 				if(data[k] == field[j]){
-					str += data_obj[i][data[k]];
+					str += '"' + data_obj[i][data[k]] + '"';
 					break;
 				}
 			}
@@ -35,13 +35,18 @@ function output(field,data_obj,path){
 				str += ',';
 			}
 		}
-		str += '\n';
+		if(i == data_obj.length-1){
+
+		}else{
+			str += '\n';
+		}
 	}
 	csv_f.write(str);
 	csv_f.close();
 }
 
 module.exports = function(){
+	//recheck is user has two invite people response
 	var array = [];
 	return {
 		setField: function(arr){ array = setField(arr);},
